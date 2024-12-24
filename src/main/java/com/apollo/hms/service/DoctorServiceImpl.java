@@ -5,10 +5,12 @@ import com.apollo.hms.dto.DoctorOutputDto;
 import com.apollo.hms.entity.Doctor;
 import com.apollo.hms.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class DoctorServiceImpl implements DoctorService {
 
     @Autowired

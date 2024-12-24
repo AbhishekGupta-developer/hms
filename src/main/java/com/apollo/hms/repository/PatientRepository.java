@@ -10,7 +10,7 @@ import java.util.Map;
 public class PatientRepository {
 
     // Dummy database
-    public Map<Long, Patient> doctors = new HashMap<>();
+    public Map<Long, Patient> patients = new HashMap<>();
 
     // dummy doctor ID generator
     public Long id = 0L;
