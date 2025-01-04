@@ -32,12 +32,12 @@ public class DoctorController {
         return new ResponseEntity<>(doctorService.addDoctor(doctorInputDto), HttpStatusCode.valueOf(201));
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<DoctorOutputDto> updateDoctor(@PathVariable Long id, @RequestBody DoctorInputDto doctorInputDto) {
         return new ResponseEntity<>(doctorService.updateDoctor(id, doctorInputDto), HttpStatusCode.valueOf(200));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> removeDoctor(@PathVariable Long id) {
         return new ResponseEntity<>(doctorService.removeDoctor(id), HttpStatusCode.valueOf(200));
     }
