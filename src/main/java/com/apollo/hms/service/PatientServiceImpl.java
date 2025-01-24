@@ -2,7 +2,7 @@ package com.apollo.hms.service;
 
 import com.apollo.hms.dto.PatientInputDto;
 import com.apollo.hms.dto.PatientOutputDto;
-import com.apollo.hms.entity.Patient;
+import com.apollo.hms.model.Patient;
 import com.apollo.hms.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class PatientServiceImpl implements PatientService {
     public PatientOutputDto getPatient(Long id) {
         PatientOutputDto patientOutputDto = new PatientOutputDto();
 
-        Patient patient = patientRepository.patients.get(id);
+        Patient patient = patientRepository.findById(id).orElse(null);
 
         patientOutputDto.setId(patient.getId());
         patientOutputDto.setName(patient.getName());
@@ -34,7 +34,7 @@ public class PatientServiceImpl implements PatientService {
     public List<PatientOutputDto> getAllPatients() {
         List<PatientOutputDto> patientOutputDtoList = new ArrayList<>();
 
-        List<Patient> patients = new ArrayList<>(patientRepository.patients.values());
+        List<Patient> patients = patientRepository.findAll();
 
         for(Patient patient : patients) {
             PatientOutputDto patientOutputDto = new PatientOutputDto();
@@ -52,20 +52,15 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientOutputDto addPatient(PatientInputDto patientInputDto) {
-        Long id = ++patientRepository.id;
-
         Patient patient = new Patient();
 
-        patient.setId(id);
         patient.setName(patientInputDto.getName());
         patient.setSymptom(patientInputDto.getSymptom());
         patient.setGender(patientInputDto.getGender());
 
-        patientRepository.patients.put(id, patient);
+        patient = patientRepository.save(patient);
 
         PatientOutputDto patientOutputDto = new PatientOutputDto();
-
-        patient = patientRepository.patients.get(id);
 
         patientOutputDto.setId(patient.getId());
         patientOutputDto.setName(patient.getName());
@@ -84,11 +79,9 @@ public class PatientServiceImpl implements PatientService {
         patient.setSymptom(patientInputDto.getSymptom());
         patient.setGender(patientInputDto.getGender());
 
-        patientRepository.patients.put(id, patient);
+        patient = patientRepository.save(patient);
 
         PatientOutputDto patientOutputDto = new PatientOutputDto();
-
-        patient = patientRepository.patients.get(id);
 
         patientOutputDto.setId(patient.getId());
         patientOutputDto.setName(patient.getName());
@@ -100,8 +93,9 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public String removePatient(Long id) {
-        patientRepository.patients.remove(id);
+        String name = patientRepository.findById(id).orElse(null).getName();
+        patientRepository.deleteById(id);
 
-        return "Patient id: " + id + ", removed successfully!";
+        return "Patient name: " + name + "Patient id: " + id + ", removed successfully!";
     }
 }
