@@ -24,9 +24,11 @@ public class DoctorServiceImpl implements DoctorService {
 
         doctorOutputDto.setId(doctor.getId());
         doctorOutputDto.setName(doctor.getName());
-        doctorOutputDto.setSpecialisation(doctor.getSpecialisation());
+        doctorOutputDto.setCity(doctor.getCity());
+        doctorOutputDto.setEmail(doctor.getEmail());
+        doctorOutputDto.setPhone(doctor.getPhone());
+        doctorOutputDto.setSpeciality(doctor.getSpeciality());
         doctorOutputDto.setGender(doctor.getGender());
-        doctorOutputDto.setSalary(doctor.getSalary());
 
         return doctorOutputDto;
     }
@@ -42,9 +44,11 @@ public class DoctorServiceImpl implements DoctorService {
 
             doctorOutputDto.setId(doctor.getId());
             doctorOutputDto.setName(doctor.getName());
-            doctorOutputDto.setSpecialisation(doctor.getSpecialisation());
+            doctorOutputDto.setCity(doctor.getCity());
+            doctorOutputDto.setEmail(doctor.getEmail());
+            doctorOutputDto.setPhone(doctor.getPhone());
+            doctorOutputDto.setSpeciality(doctor.getSpeciality());
             doctorOutputDto.setGender(doctor.getGender());
-            doctorOutputDto.setSalary(doctor.getSalary());
 
             doctorOutputDtoList.add(doctorOutputDto);
         }
@@ -57,9 +61,11 @@ public class DoctorServiceImpl implements DoctorService {
         Doctor doctor = new Doctor();
 
         doctor.setName(doctorInputDto.getName());
-        doctor.setSpecialisation(doctorInputDto.getSpecialisation());
+        doctor.setCity(doctorInputDto.getCity());
+        doctor.setEmail(doctorInputDto.getEmail());
+        doctor.setPhone(doctorInputDto.getPhone());
+        doctor.setSpeciality(doctorInputDto.getSpeciality());
         doctor.setGender(doctorInputDto.getGender());
-        doctor.setSalary(doctorInputDto.getSalary());
 
         doctor = doctorRepository.save(doctor);
 
@@ -67,9 +73,11 @@ public class DoctorServiceImpl implements DoctorService {
 
         doctorOutputDto.setId(doctor.getId());
         doctorOutputDto.setName(doctor.getName());
-        doctorOutputDto.setSpecialisation(doctor.getSpecialisation());
+        doctorOutputDto.setCity(doctor.getCity());
+        doctorOutputDto.setEmail(doctor.getEmail());
+        doctorOutputDto.setPhone(doctor.getPhone());
+        doctorOutputDto.setSpeciality(doctor.getSpeciality());
         doctorOutputDto.setGender(doctor.getGender());
-        doctorOutputDto.setSalary(doctor.getSalary());
 
         return doctorOutputDto;
     }
@@ -79,10 +87,13 @@ public class DoctorServiceImpl implements DoctorService {
         Doctor doctor = new Doctor();
 
         doctor.setId(id);
+
         doctor.setName(doctorInputDto.getName());
-        doctor.setSpecialisation(doctorInputDto.getSpecialisation());
+        doctor.setCity(doctorInputDto.getCity());
+        doctor.setEmail(doctorInputDto.getEmail());
+        doctor.setPhone(doctorInputDto.getPhone());
+        doctor.setSpeciality(doctorInputDto.getSpeciality());
         doctor.setGender(doctorInputDto.getGender());
-        doctor.setSalary(doctorInputDto.getSalary());
 
         doctor = doctorRepository.save(doctor);
 
@@ -90,9 +101,11 @@ public class DoctorServiceImpl implements DoctorService {
 
         doctorOutputDto.setId(doctor.getId());
         doctorOutputDto.setName(doctor.getName());
-        doctorOutputDto.setSpecialisation(doctor.getSpecialisation());
+        doctorOutputDto.setCity(doctor.getCity());
+        doctorOutputDto.setEmail(doctor.getEmail());
+        doctorOutputDto.setPhone(doctor.getPhone());
+        doctorOutputDto.setSpeciality(doctor.getSpeciality());
         doctorOutputDto.setGender(doctor.getGender());
-        doctorOutputDto.setSalary(doctor.getSalary());
 
         return doctorOutputDto;
     }
@@ -102,6 +115,6 @@ public class DoctorServiceImpl implements DoctorService {
         String name = doctorRepository.findById(id).orElse(null).getName();
         doctorRepository.deleteById(id);
 
-        return "Doctor name: " + name + "Doctor id: " + id + ", removed successfully!";
+        return "Doctor name: " + name + " (" + id + "), removed successfully!";
     }
 }

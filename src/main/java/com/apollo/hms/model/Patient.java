@@ -1,7 +1,7 @@
 package com.apollo.hms.model;
 
 import com.apollo.hms.enums.Gender;
-import com.apollo.hms.enums.Symptoms;
+import com.apollo.hms.enums.Symptom;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,10 +13,17 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
+    private String city;
+
+    private String email;
+
+    private String phone;
+
     @Enumerated(EnumType.STRING)
-    private Symptoms symptom;
+    private Symptom symptom;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;

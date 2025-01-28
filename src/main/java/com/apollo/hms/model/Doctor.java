@@ -1,7 +1,8 @@
 package com.apollo.hms.model;
 
+import com.apollo.hms.enums.City;
 import com.apollo.hms.enums.Gender;
-import com.apollo.hms.enums.Specialisation;
+import com.apollo.hms.enums.Speciality;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,11 +18,16 @@ public class Doctor {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private Specialisation specialisation;
+    private City city;
+
+    private String email;
+
+    private String phone;
+
+    @Enumerated(EnumType.STRING)
+    private Speciality speciality;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
-
-    private Long salary;
 
 }

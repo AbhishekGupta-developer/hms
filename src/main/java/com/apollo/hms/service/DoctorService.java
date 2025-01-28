@@ -6,9 +6,9 @@ import com.apollo.hms.dto.DoctorOutputDto;
 import java.util.List;
 
 public interface DoctorService {
-    public DoctorOutputDto getDoctor(Long id);
-    public List<DoctorOutputDto> getAllDoctors();
-    public DoctorOutputDto addDoctor(DoctorInputDto doctorInputDto);
-    public DoctorOutputDto updateDoctor(Long id, DoctorInputDto doctorInputDto);
-    public String removeDoctor(Long id);
+    DoctorOutputDto getDoctor(Long id);
+    List<DoctorOutputDto> getAllDoctors();
+    DoctorOutputDto addDoctor(DoctorInputDto doctorInputDto);
+    DoctorOutputDto updateDoctor(Long id, DoctorInputDto doctorInputDto);
+    String removeDoctor(Long id);
 }

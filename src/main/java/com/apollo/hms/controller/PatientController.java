@@ -1,5 +1,6 @@
 package com.apollo.hms.controller;
 
+import com.apollo.hms.dto.DoctorOutputDto;
 import com.apollo.hms.dto.PatientInputDto;
 import com.apollo.hms.dto.PatientOutputDto;
 import com.apollo.hms.service.PatientService;
@@ -17,12 +18,12 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @GetMapping
-    public ResponseEntity<PatientOutputDto> getPatient(@RequestParam Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<PatientOutputDto> getPatient(@PathVariable Long id) {
         return new ResponseEntity<>(patientService.getPatient(id), HttpStatusCode.valueOf(200));
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<PatientOutputDto>> getAllPatients() {
         return new ResponseEntity<>(patientService.getAllPatients(), HttpStatusCode.valueOf(200));
     }
@@ -40,6 +41,11 @@ public class PatientController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> removePatient(@PathVariable Long id) {
         return new ResponseEntity<>(patientService.removePatient(id), HttpStatusCode.valueOf(200));
+    }
+
+    @GetMapping("/suggest/{id}")
+    public ResponseEntity<List<DoctorOutputDto>> suggestDoctors(@PathVariable Long id) {
+        return new ResponseEntity<>(patientService.suggestDoctors(id), HttpStatusCode.valueOf(200));
     }
 
 }
