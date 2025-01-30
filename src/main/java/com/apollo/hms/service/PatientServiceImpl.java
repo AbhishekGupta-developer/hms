@@ -6,6 +6,7 @@ import com.apollo.hms.dto.PatientOutputDto;
 import com.apollo.hms.enums.City;
 import com.apollo.hms.enums.Speciality;
 import com.apollo.hms.enums.Symptom;
+import com.apollo.hms.model.Bill;
 import com.apollo.hms.model.Doctor;
 import com.apollo.hms.model.Patient;
 import com.apollo.hms.repository.DoctorRepository;
@@ -76,6 +77,12 @@ public class PatientServiceImpl implements PatientService {
         patient.setSymptom(patientInputDto.getSymptom());
         patient.setGender(patientInputDto.getGender());
 
+        Bill bill = new Bill();
+        bill.setAmount(1000D);
+        bill.setPatient(patient);
+
+        patient.setBill(bill);
+
         patient = patientRepository.save(patient);
 
         PatientOutputDto patientOutputDto = new PatientOutputDto();
@@ -87,6 +94,7 @@ public class PatientServiceImpl implements PatientService {
         patientOutputDto.setPhone(patient.getPhone());
         patientOutputDto.setSymptom(patient.getSymptom());
         patientOutputDto.setGender(patient.getGender());
+        patientOutputDto.setBill(patient.getBill());
 
         return patientOutputDto;
     }

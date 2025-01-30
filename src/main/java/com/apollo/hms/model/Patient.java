@@ -27,4 +27,7 @@ public class Patient {
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Bill bill;
 }

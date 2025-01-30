@@ -38,8 +38,8 @@ public class PatientController {
         return new ResponseEntity<>(patientService.updatePatient(id, patientInputDto), HttpStatusCode.valueOf(200));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> removePatient(@PathVariable Long id) {
+    @DeleteMapping
+    public ResponseEntity<String> removePatient(@RequestParam Long id) {
         return new ResponseEntity<>(patientService.removePatient(id), HttpStatusCode.valueOf(200));
     }
 
